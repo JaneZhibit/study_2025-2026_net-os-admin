@@ -288,7 +288,8 @@ header-includes:
 
 На машине client с помощью утилиты dig убедимся в наличии DNS-записи о клиенте в прямой DNS-зоне
 :::
-::: {.column width="40%"}
+::: {.column width="40
+%"}
 
 ![Запись о клиенте](image/37.jpg)
 
@@ -323,7 +324,7 @@ header-includes:
 :::::::::::::: {.columns align=center}
 ::: {.column width="50%"}
 
-![Выключение](image/35.jpg)
+![Выключение](image/36.jpg)
 
 :::
 ::::::::::::::
