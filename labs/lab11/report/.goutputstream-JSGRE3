@@ -1,0 +1,160 @@
+---
+# Preamble
+
+## Author
+author:
+  name: Жибицкая Евгения Дмитриевна
+  degrees: 
+  orcid: 0000-0002-0877-7063
+  email: 
+  affiliation:
+    - name: Российский университет дружбы народов
+      country: Российская Федерация
+      postal-code: 117198
+      city: Москва
+      address: ул. Миклухо-Маклая, д. 6
+## Title
+title: "Лабораторная работа №11"
+subtitle: "Дисциплина: Администрирование сетевых подсистем"
+license: "CC BY"
+## Generic options
+lang: ru-RU
+number-sections: true
+toc: true
+toc-title: "Содержание"
+toc-depth: 2
+## Crossref customization
+crossref:
+  lof-title: "Список иллюстраций"
+  lot-title: "Список таблиц"
+  lol-title: "Листинги"
+## Bibliography
+bibliography:
+  - bib/cite.bib
+csl: _resources/csl/gost-r-7-0-5-2008-numeric.csl
+## Formats
+format:
+### Pdf output format
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: false
+    toc-depth: 2
+    lof: true # List of figures
+    lot: true # List of tables
+#### Document
+    documentclass: scrreprt
+    papersize: a4
+    fontsize: 12pt
+    linestretch: 1.5
+#### Language
+    babel-lang: russian
+    babel-otherlangs: english
+#### Biblatex
+    cite-method: biblatex
+    biblio-style: gost-numeric
+    biblatexoptions:
+      - backend=biber
+      - langhook=extras
+      - autolang=other*
+#### Misc options
+    csquotes: true
+    indent: true
+    header-includes: |
+      \usepackage{indentfirst}
+      \usepackage{float}
+      \floatplacement{figure}{H}
+      \usepackage[RM={Scale=0.94},SS={Scale=0.94},SScon={Scale=0.94},TT={Scale=MatchLowercase,FakeStretch=0.9},DefaultFeatures={Ligatures=Common}]{plex-otf}
+### Docx output format
+  docx:
+    toc: true
+    number-sections: true
+    toc-depth: 2
+---
+
+# Цель работы
+
+Продолжение работы с Rocky Linux, приобретение практических навыков по настройке удалённого доступа к серверу с помощью SSH.
+
+# Выполнение лабораторной работы
+
+Запустим виртуальную машину сервер для работы, перейдем в режим суперпользователя и в дополнительном терминале запускаем мониторинг почтовой службы. С клиента попытаемся получить доступ к серверу посредством SSH-соединения через пользователя root - доступ запрещен([рис. @fig-001]).
+
+![Попытка получения доступа](image/1.jpg){#fig-001 width=70%}
+
+ 
+На сервере откроем файл /etc/ssh/sshd_config конфигурации sshd для редактирования и запретим вход на сервер пользователю root, перезапустим систему sshd([рис. @fig-002]).
+
+![/etc/ssh/sshd_config](image/2.jpg){#fig-002 width=70%}
+
+ 
+Повторим попытку получения доступа - он так же запрещен([рис. @fig-003]).
+
+![ssh root@server](image/3.jpg){#fig-003 width=70%}
+
+ 
+С клиента попытаемся получить доступ к серверу посредством SSH-соединения через пользователя - доступ разрешен, происходит подключение([рис. @fig-004]).
+
+![Подключение через пользователя](image/4.jpg){#fig-004 width=70%}
+
+ На сервере откроем файл /etc/ssh/sshd_config конфигурации sshd на редактирование и добавим строку([рис. @fig-005]). Также перезапускаем службу.
+
+![/etc/ssh/sshd_config](image/5.jpg){#fig-005 width=70%}
+
+Повторим попытку получения доступа с клиента к серверу посредством
+SSH-соединения через пользователя - доступа нет([рис. @fig-006]). Также перезапускаем службу.
+
+![Повторное подключение через пользователя](image/6.jpg){#fig-006 width=70%}
+
+Еще раз внесем изменения в файл, перезагрузим службу и попытаемся получить доступ([рис. @fig-007] и [рис. @fig-008]).
+
+![/etc/ssh/sshd_config](image/7.jpg){#fig-007 width=70%}
+
+![Попытка подключения](image/8.jpg){#fig-008 width=70%}
+
+ 
+Перейдем к настройке дополнительных портов для удалённого
+доступа по SSH.
+ 
+ 
+На сервере внесем изменения в файле конфигурации sshd /etc/ssh/sshd_config([рис. @fig-009]).
+
+![Порты /etc/ssh/sshd_config](image/9.jpg){#fig-009 width=70%}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Наконец, внесем изменения в настройки внутреннего окржуения.
+ 
+ Копируем файлы в соответствующие подкаталоги([рис. @fig-021]), создаем исполняемый файл([рис. @fig-022]) и вносим изменения в Vagrantfile([рис. @fig-023])
+ 
+![Каталоги](image/21.jpg){#fig-021 width=70%}
+
+![Скрипт](image/22.jpg){#fig-022 width=70%}
+
+![ Vagrantfile](image/23.jpg){#fig-0 width=70%}
+
+ 
+ 
+ 
+ 
+
+# Контрольные вопросы
+
+
+
+# Выводы
+
+ В ходе работы были приобретены практические навыки  по настройке удалённого доступа к серверу с помощью SSH.
+ 
+ 
+# Список литературы{.unnumbered}
+
+[ТУИС](https://esystem.rudn.ru/pluginfile.php/2854774/mod_resource/content/6/011-ssh.pdf)
+
+::: {#refs}
+:::
